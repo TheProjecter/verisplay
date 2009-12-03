@@ -1,0 +1,24 @@
+John McAlarney 2009
+
+iVerilog Display extension
+
+This shared library is an extension meant to be used with iVerilog, it allows for graphical debugging output, and is useful for the design
+of graphics processor simulations.  It is released under the GPL V2 license.
+
+This iVerilog module is simple to use.  Compilation is easy, the Makefile should explain quick usage, and implementation is just as easy.
+This library requires OpenGL, GLUT, and the iVerilog VPI extensions.  The c file containing the LCD simulation code might need to be
+modified to change the include path for the vpi_user.h file, depending on your linux distro, but that should be about it.
+
+
+Essentially, the extension consists of 3 different functions.  init_lcd(h,w,speed) plot(x,y,r,g,b), and redraw();
+
+The included testbench file shows a very quick example implementation.  The only thing you really need to consider is that the plot
+function is plotting twice as fast as the simulation is changing coordinate data, and is doing so continuously.  This might not be the
+most efficient, but unfortunately the Nyquist rate had to be observed in this implementation in order for the display to work.  Redraw is
+not necessary as the display will update after a H*W pixel plots are made.
+
+The speed flat is simply a numerical value of 0 or 1. 0 will cause slow operation, where the display is redrawn after every plot.  This
+is really, really slow, however useful when debugging specific graphics functions.  A value of 1 will cause a fast plot, where the screen is
+redrawn every H*W pixel plots (assuming the pixels are being plotted at the raster's Nyquist rate.)
+
+Any questions or comments can be directed to scourfish@yahoo.com
