@@ -1,0 +1,8 @@
+all: 
+	gcc -c -fpic lcd_vpi.c
+	gcc -shared -o lcd_vpi.vpi lcd_vpi.o -lglut -lvpi
+	iverilog -olcd_tb.vvp lcd_tb.v
+
+run:
+	vvp -M. -mlcd_vpi lcd_tb.vvp
+	
