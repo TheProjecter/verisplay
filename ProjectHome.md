@@ -1,0 +1,1 @@
+This project is a simple library extension for Icarus Verilog.  It allows for graphical debugging, and is very useful for the development of Verilog based graphic processors.
